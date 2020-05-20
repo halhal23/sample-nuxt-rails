@@ -6,7 +6,7 @@
     <el-button @click="logout" type="danger" round>ログアウト</el-button>
     <el-button @click="showMe" type="warning" round>Show Me</el-button>
     <el-button type="text" @click="dialogShowMe">click to open the Dialog</el-button>
-    <img src="images/mountain-2.jpg" width="200px" height="200px">
+    <img src="~/static/images/mountain-2.jpg" width="200px" height="200px">
     <el-dialog
       title="Tips"
       :visible.sync="dialogVisible"
@@ -17,20 +17,43 @@
         <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
       </span>
     </el-dialog>
+
+
+    <el-table
+      :data="tableData"
+      border
+      style="width: 100%">
+      <el-table-column
+        prop="name"
+        label="名前"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="email"
+        label="メールアドレス"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="created_at"
+        label="登録日時">
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 <script>
 export default {
-  async asyncData({ $axios }){
-    // let users = await $axios.$get('/users')
-    // console.log(users)
-    // console.log('終了 asyncData /pages/users.vue')
+  async asyncData({ $axios, store }){
+    let members = await $axios.$get('/members/index')
+    console.log(members)
+    console.log(store.$auth.$state.loggedIn) 
     return {
       users: 12,
       dialogVisible: false,
-      email: {}
+      email: {},
+      tableData: members.data
     }
   },
+
   methods: {
     getting(){
       console.log(process.env.apiBaseUrl)
@@ -38,14 +61,14 @@ export default {
 
     },
     async logout(){
+      console.log(this.$store)
       await this.$auth.logout({
         data: {
-          email: 'rails@gmail.com',
-          password: 'password',
-          password_confirmation: 'password'
+          email: 'python@gmail.com'
         }
       }).then( res => {
         console.log('ログアウト成功')
+        this.$store.commit('setMember', { member: null })
         console.log(res)
         return res
       }).catch( err => {

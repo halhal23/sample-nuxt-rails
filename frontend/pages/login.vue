@@ -51,10 +51,26 @@ export default {
       }).then( res => {
         console.log('ログイン成功' + ' /pages/login.js')
         console.log(res)
+        console.log(this)
+        this.$store.commit('setMember', res.data )
+        this.$notify({
+          type: 'success',
+          title: 'ログインしました。',
+          message: `${res.data.data.uid}としてログインしました。`,
+          position: 'top-left',
+          duration: 2000
+        })
         return res
       }).catch( err => {
         console.log('ログイン失敗' + ' /pages/login.js')
         console.log(err)
+        this.$notify({
+          type: 'success',
+          title: 'ログアウト',
+          message: `ログインしました。`,
+          position: 'top-left',
+          duration: 2000
+        })
         return err
       })
     }

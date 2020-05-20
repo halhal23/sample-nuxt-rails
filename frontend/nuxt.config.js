@@ -23,13 +23,14 @@ const config =  {
   */
   loading: { color: '#fff' },
   router: {
-    middleware: ['redirect', 'auth']
+    middleware: ['redirect']
   },
   /*
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    '~/assets/common.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -37,6 +38,7 @@ const config =  {
   plugins: [
     { src: "@/plugins/element-ui" },
     { src: "~/plugins/axios.js", ssr: false },
+    { src: "~/plugins/localStorage.js", ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
