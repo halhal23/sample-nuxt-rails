@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "test": "jest",
     "build": "nuxt build",
     "build:stg": "cross-env NODE_ENV=\"staging\" nuxt build",
     "build:prod": "cross-env NODE_ENV=\"production\" nuxt build",
@@ -23,5 +24,9 @@
     "nuxt": "^2.0.0",
     "vuex-persistedstate": "^3.0.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.3",
+    "jest": "^26.0.1",
+    "lodash.clonedeep": "^4.5.0"
+  }
 }

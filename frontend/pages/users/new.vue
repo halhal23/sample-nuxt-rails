@@ -43,7 +43,7 @@ export default {
   methods: {
     async signUp(){
       console.log('signUp start /pages/users/new')
-      await this.$axios.$post('/auth', {
+      await this.$axios.$post(process.env.browserBaseUrl + '/auth', {
         name: this.name,
         email: this.email,
         password: this.password,

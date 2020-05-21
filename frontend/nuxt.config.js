@@ -59,8 +59,9 @@ const config =  {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: envSet.apiBaseUrl,
-    browserBaseURL: 'http://localhost:3000'
+    // baseURL: envSet.apiBaseUrl,
+    // browserBaseURL: 'http://localhost:3000',
+    proxy: true
   },
   auth: {
     redirect: {
@@ -72,18 +73,18 @@ const config =  {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/auth/sign_in', method: 'post', propertyName: false },
-          logout: { url: '/auth/sign_out', method: 'DELETE'},
+          login: { url: envSet.browserBaseUrl + '/auth/sign_in', method: 'post', propertyName: false },
+          logout: { url: envSet.browserBaseUrl + '/auth/sign_out', method: 'DELETE'},
           user: false
         }
       }
     }
   },
   proxy: {
-    '/api': {
-      target: 'http://13.115.127.90:3000',
+    '/api/': {
+      target: 'https://api.gnavi.co.jp/RestSearchAPI/v3/',
       pathRewrite: {
-        '^/api': '/'
+        '^/api/': '/'
       }
     }
   },

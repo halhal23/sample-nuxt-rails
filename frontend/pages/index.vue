@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getUsers(){
-      this.$axios.$get('/users').then(( res )=>{
+      this.$axios.$get(process.env.browserBaseUrl + '/users').then(( res )=>{
         console.log(res)
       }).catch(err => {
         console.log(err)
