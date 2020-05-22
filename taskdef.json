@@ -1,0 +1,31 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "container-nuxt",
+      "image": "<IMAGE_FRONT_NAME>",
+      "cpu": 500,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 80
+        }
+      ],
+      "memory": 500,
+      "essential": true
+    },
+    {
+      "name": "container-rails",
+      "image": "<IMAGE_BACK_NAME>",
+      "cpu": 450,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000
+        }
+      ],
+      "memory": 450,
+      "essential": false
+    }
+  ],
+  "family": "portfolio"
+}
