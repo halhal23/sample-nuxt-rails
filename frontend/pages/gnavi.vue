@@ -66,7 +66,7 @@ export default {
         console.log(res)
         this.decoies = res
       }).catch(err => {
-        console.log('error create decoy')
+        console.log('error create decoy desu')
         console.log(err)
       })
     },
