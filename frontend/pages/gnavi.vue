@@ -5,7 +5,7 @@
     </h2>
     <el-button @click="increment" style="padding: 10px 20px;" type="success" round>{{ count }}</el-button>
     <h3 v-for="s in shops" :key="s.id">{{ s.name }}</h3>
-    <h2 @click="getDecoies">デコイを取得</h2>
+    <h2 @click="getDecoies">デコイを取得します</h2>
     <ul v-if="decoies">
       <li v-for="d in decoies" :key="d.id">
         <span @click="setDecoy(d)">{{ d.name }}</span>

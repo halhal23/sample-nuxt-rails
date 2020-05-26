@@ -38,7 +38,8 @@ const config =  {
   plugins: [
     { src: "@/plugins/element-ui" },
     { src: "~/plugins/axios.js", ssr: false },
-    { src: "~/plugins/localStorage.js", ssr: false }
+    { src: "~/plugins/localStorage.js", ssr: false },
+    { src: "~plugins/vue2-google-maps.js" }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -92,7 +93,7 @@ const config =  {
   ** Build configuration
   */
   build: {
-    transpile: [/^element-ui/],
+    transpile: [/^element-ui/, /^vue2-google-maps($|\/)/],
     /*
     ** You can extend webpack config here
     */
