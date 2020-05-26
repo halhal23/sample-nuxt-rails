@@ -36,7 +36,7 @@ jobs:
       #       chmod +x ./rails/cc-test-reporter
       #       ./rails/cc-test-reporter before-build
       - run:
-          name: frontend test
+          name: frontend test desu
           command: docker-compose -p nuxt_on_rails_on_docker run --rm frontend yarn test
 
       #     name: Send results to Code Climate
