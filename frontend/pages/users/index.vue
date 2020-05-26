@@ -20,6 +20,7 @@
 
 
     <el-table
+      v-if="tableData"
       :data="tableData"
       border
       style="width: 100%">
@@ -43,7 +44,16 @@
 <script>
 export default {
   async asyncData({ $axios, store }){
-    let members = await $axios.$get('/members/index')
+    if (process.browser){
+        console.log('process.browser /pages/users')
+        return {
+        users: 12,
+        dialogVisible: false,
+        email: {},
+        tableData: false
+      }
+    }
+    let members = await $axios.$get(process.env.apiBaseUrl + '/members/index')
     console.log(members)
     console.log(store.$auth.$state.loggedIn) 
     return {
@@ -78,7 +88,7 @@ export default {
       })
     },
     async showMe(){
-      await this.$axios.$get('/me').then( res => {
+      await this.$axios.$get(process.env.browserBaseUrl + '/me').then( res => {
         console.log('↓show me')
         console.log(res)
       }).catch( err => {
@@ -88,7 +98,7 @@ export default {
     },
     async dialogShowMe(){
       this.dialogVisible = true
-      await this.$axios.$get('/me').then( res => {
+      await this.$axios.$get(process.env.browserBaseUrl + '/me').then( res => {
         console.log('↓show me')
         console.log(res)
         this.email = res.data.email

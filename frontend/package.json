@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
+    "test": "jest",
     "build": "nuxt build",
     "build:stg": "cross-env NODE_ENV=\"staging\" nuxt build",
     "build:prod": "cross-env NODE_ENV=\"production\" nuxt build",
@@ -21,7 +22,12 @@
     "cross-env": "^7.0.2",
     "element-ui": "^2.4.11",
     "nuxt": "^2.0.0",
+    "vue2-google-maps": "^0.10.7",
     "vuex-persistedstate": "^3.0.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.3",
+    "jest": "^26.0.1",
+    "lodash.clonedeep": "^4.5.0"
+  }
 }

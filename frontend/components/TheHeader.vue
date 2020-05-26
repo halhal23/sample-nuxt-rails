@@ -14,11 +14,17 @@
         <nuxt-link to="/users/new">NEW</nuxt-link>
       </li>
       <li>
+        <nuxt-link to="/gnavi">GNAVI</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/map">MAP</nuxt-link>
+      </li>
+      <li>
         {{ loginMsg }}
       </li>
-      <li v-if="$store.state.auth.loggedIn">
+      <li v-if="member">
         {{ member.uid }}
-      </li>
+      </li> 
     </ul>
   </div>
 </template>
@@ -30,7 +36,7 @@ export default {
     loginMsg(){
       return this.$store.state.auth.loggedIn ? "ログイン中" : "未ログイン"
     },
-    ...mapGetters(['member'])
+    ...mapGetters(['member', 'isLoggedIn'])
   }
 }
 </script>
@@ -42,7 +48,7 @@ ul {
 }
 li {
   list-style: none;
-  font-size: 20px;
+  font-size:  15px;
   margin-right: 50px;
 }
 a {

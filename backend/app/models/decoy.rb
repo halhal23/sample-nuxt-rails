@@ -1,0 +1,2 @@
+class Decoy < ApplicationRecord
+end

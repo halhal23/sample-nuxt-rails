@@ -10,7 +10,7 @@ services:
   backend:
     build: ./backend
     ports:
-      - ${BACKEND_PORT}:3000
+      - ${BACKEND_PORT}:3001
     command: /bin/sh -c "rm -f /app/tmp/pids/server.pid && bundle exec rails s -b ${BACKEND_HOST}"
     volumes:
       - ./backend:/app
@@ -25,7 +25,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - ${FRONTEND_PORT}:8080
+      - ${FRONTEND_PORT}:8081
     command: /bin/sh -c "yarn dev"
     volumes:
       - ./frontend:/app

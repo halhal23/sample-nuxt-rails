@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region ap-northeast-1)
+  build:
+    commands:
+      - echo Building the rails Docker image...
+      - docker image build --file="./backend/Dockerfile" -t 065819813599.dkr.ecr.ap-northeast-1.amazonaws.com/sample-rails:latest
+      # - docker tag イメージ名:latest ************.dkr.ecr.us-east-1.amazonaws.com/イメージ名:latest
+
+      - echo Building the nuxt Docker image...
+      - docker image build --file="./frontend/Dockerfile.prd" -t 065819813599.dkr.ecr.ap-northeast-1.amazonaws.com/sample-nuxt:latest
+      # - docker tag イメージ名:latest ************.dkr.ecr.us-east-1.amazonaws.com/イメージ名:latest
+  post_build:
+    commands:
+      - echo Pushing the rails Docker image...
+      - docker push 065819813599.dkr.ecr.ap-northeast-1.amazonaws.com/sample-rails:latest
+
+      - echo Pushing the nuxt Docker image...
+      - docker push 065819813599.dkr.ecr.ap-northeast-1.amazonaws.com/sample-nuxt:latest
+      
+      - echo Writing image definitions file...
+      - printf '[{"name":"{container name}","imageUri":"%s"}]' ************.dkr.ecr.us-east-1.amazonaws.com/イメージ名:latest > imagedefinitions.json
+artifacts:
+  files:
+    - imagedefinitions.json
