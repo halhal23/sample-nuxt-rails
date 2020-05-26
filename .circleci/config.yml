@@ -38,9 +38,9 @@ jobs:
           command: docker-compose down
 workflows:
   version: 2.1
-  front-back-test:
-    jobs:
-      - test
+  # front-back-test:
+  #   jobs:
+  #     - test
 
   nuxt-ecr-push:
     jobs:
@@ -50,7 +50,7 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
-          dockerfile: ./frontend/Dockerfile.prd
+          path: './frontend/Dockerfile.prd'
           repo: sample-nuxt
           tag: "latest"
 
@@ -62,7 +62,7 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
-          dockerfile: ./backend/Dockerfile
+          path: './backend/'
           repo: sample-rails
           tag: "latest"
       
