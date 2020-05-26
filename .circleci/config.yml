@@ -50,7 +50,8 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
-          path: './frontend/Dockerfile.prd'
+          path: './frontend/'
+          dockerfile: ./frontend/Dockerfile.prd
           repo: sample-nuxt
           tag: "latest"
 
