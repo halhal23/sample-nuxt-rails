@@ -91,4 +91,4 @@ sw.*
 # Vim swap files
 *.swp
 
-env.*.js
+env.development.js
