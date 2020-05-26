@@ -17,6 +17,9 @@
         <nuxt-link to="/gnavi">GNAVI</nuxt-link>
       </li>
       <li>
+        <nuxt-link to="/gnavi">GNAVI</nuxt-link>
+      </li>
+      <li>
         <nuxt-link to="/map">MAP</nuxt-link>
       </li>
       <li>
