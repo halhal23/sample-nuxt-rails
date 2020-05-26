@@ -3,7 +3,7 @@
     <div>
       <logo />
       <h1 class="title">
-        appp
+        ecr push
         <button @click="getUsers"></button>
       </h1>
       <h2 class="subtitle">

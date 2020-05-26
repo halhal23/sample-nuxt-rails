@@ -1,6 +1,10 @@
-version: 2
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.0
+  aws-ecs: circleci/aws-ecs@1.1.0
+  aws-cli: circleci/aws-cli@0.1.16
 jobs:
-  build:
+  test:
     machine:
       image: circleci/classic:edge
     environment:
@@ -26,42 +30,39 @@ jobs:
       - run:
           name: docker-compose up
           command: docker-compose -p nuxt_on_rails_on_docker up -d
-      # - run:
-      #     name: docker exec nuxt_on_rails_on_docker_rails_1 bin/setup
-      #     command: docker exec nuxt_on_rails_on_docker_rails_1 bin/setup
-      # - run:
-      #     name: Setup Code Climate test-reporter
-      #     command: |
-      #       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./rails/cc-test-reporter
-      #       chmod +x ./rails/cc-test-reporter
-      #       ./rails/cc-test-reporter before-build
       - run:
-          name: frontend test desu
+          name: frontend test 
           command: docker-compose -p nuxt_on_rails_on_docker run --rm frontend yarn test
-
-      #     name: Send results to Code Climate
-      #     command: |
-      #       cp -r ./rails/coverage .
-      #       mv ./rails/cc-test-reporter .
-      #       mkdir -p /app/spec/
-      #       cp ./rails/spec/rails_helper.rb /app/spec/
-      #       ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
-      # - run:
-      #     name: Copy artifacts
-      #     command: |
-      #       mkdir -p /tmp/artifacts/capybara
-      #       docker cp nuxt_on_rails_on_docker_rails_1:/app/tmp/capybara "/tmp/artifacts/"
-      #       mkdir -p /tmp/artifacts/coverage
-      #       docker cp nuxt_on_rails_on_docker_rails_1:/app/coverage "/tmp/artifacts/"
-      #     when: always
-      # - store_artifacts:
-      #     path: /tmp/artifacts
-      #     when: always
       - run:
           name: docker-compose down
           command: docker-compose down
 workflows:
-  version: 2
-  build:
+  version: 2.1
+  front-back-test:
     jobs:
-      - build
+      - test
+
+  nuxt-ecr-push:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./frontend/Dockerfile.prd
+          repo: sample-nuxt
+          tag: "latest"
+
+  rails-ecr-push:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./backend/Dockerfile
+          repo: sample-rails
+          tag: "latest"
+      
