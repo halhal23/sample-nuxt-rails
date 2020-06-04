@@ -24,7 +24,7 @@
           </el-form-item>
         </el-form>
       </div>
-  </el-card>
+    </el-card>
   </div>
 </template>
 
