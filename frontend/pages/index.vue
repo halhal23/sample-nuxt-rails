@@ -7,7 +7,7 @@
         <button @click="getUsers"></button>
       </h1>
       <h2 class="subtitle">
-        My marvelous Nuxt.js project
+        これはdishareプロジェクトのためのsampleアプリです
       </h2>
       <div class="links">
         <a
