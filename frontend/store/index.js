@@ -10,7 +10,7 @@ export const getters = {
 }
 
 export const mutations = {
-setMember(state,  { data } ){
+setMember(state, data){
     console.log('set member /store.index')
     console.log('data')
     console.log(data)
