@@ -52,7 +52,7 @@ export default {
         console.log('ログイン成功' + ' /pages/login.js')
         console.log(res)
         console.log(this)
-        this.$store.commit('setMember', res.data )
+        this.$store.commit('setMember', res.data.data )
         this.$notify({
           type: 'success',
           title: 'ログインしました。',
