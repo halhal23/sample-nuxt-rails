@@ -15,7 +15,7 @@
       <el-button size="small" type="primary">Click to upload</el-button>
       <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
     </el-upload>
-    <el-button @click="updateUser">submit</el-button>
+    <el-button @click="updateUser">送信</el-button>
   </div>
 </template>
 <script>

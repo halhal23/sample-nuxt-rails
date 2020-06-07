@@ -5,19 +5,19 @@
         <nuxt-link to="/">HOME</nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/users">USERS</nuxt-link>
-      </li>
-      <li>
         <nuxt-link to="/login">LOGIN</nuxt-link>
       </li>
       <li>
         <nuxt-link to="/users/new">NEW</nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/gnavi">GNAVI</nuxt-link>
+        <nuxt-link to="/users">USERS</nuxt-link>
       </li>
       <li>
         <nuxt-link to="/map">MAP</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/gnavi">GNAVI</nuxt-link>
       </li>
       <li>
         <nuxt-link to="/users/show">MYPAGE</nuxt-link>
