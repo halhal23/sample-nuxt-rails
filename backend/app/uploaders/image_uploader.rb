@@ -18,6 +18,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    "#{Time.zone.now.strftime('%Y%m%d%H%M%S')}.#{file.extension}" if original_filename
+    original_filename if original_filename
   end
 end

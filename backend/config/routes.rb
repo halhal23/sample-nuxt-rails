@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'members/index'
-  mount_devise_token_auth_for 'Member', at: 'auth'
+  mount_devise_token_auth_for 'Member', at: 'auth', controllers: {
+    registrations: 'registrations'
+  }
   root 'users#index'
   get 'me', to: 'users#me'
   resources :users, only: [:index, :create]
