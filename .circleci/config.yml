@@ -42,36 +42,39 @@ workflows:
   #   jobs:
   #     - test
 
+
+
+
   nuxt-ecr-push:
     jobs:
       - test
 
-      - aws-ecr/build-and-push-image:
-          requires:
-            - test
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          path: './frontend/'
-          dockerfile: Dockerfile.prd
-          repo: sample-nuxt
-          tag: "latest"
+      # - aws-ecr/build-and-push-image:
+      #     requires:
+      #       - test
+      #     account-url: AWS_ECR_ACCOUNT_URL
+      #     region: AWS_REGION
+      #     aws-access-key-id: AWS_ACCESS_KEY_ID
+      #     aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      #     create-repo: true
+      #     path: './frontend/'
+      #     dockerfile: Dockerfile.prd
+      #     repo: sample-nuxt
+      #     tag: "latest"
 
-  rails-ecr-push:
-    jobs:
-      - test
+  # rails-ecr-push:
+  #   jobs:
+  #     - test
   
-      - aws-ecr/build-and-push-image:
-          requires:
-            - test
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          path: './backend/'
-          repo: sample-rails
-          tag: "latest"
+  #     - aws-ecr/build-and-push-image:
+  #         requires:
+  #           - test
+  #         account-url: AWS_ECR_ACCOUNT_URL
+  #         region: AWS_REGION
+  #         aws-access-key-id: AWS_ACCESS_KEY_ID
+  #         aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+  #         create-repo: true
+  #         path: './backend/'
+  #         repo: sample-rails
+  #         tag: "latest"
       
